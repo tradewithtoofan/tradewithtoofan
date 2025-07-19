@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Trade With TOOFAN - Join Now</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&display=swap" rel="stylesheet" />
+<style>
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif;
+    background: #e6f9e4;
+    color: #222;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Particle canvas */
+  #particles-js {
+    position: fixed;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(circle at top, #f1fff6, #e6f9e4);
+  }
+
+  /* Hero */
+  .hero {
+    max-width: 480px;
+    text-align: center;
+    z-index: 10;
+  }
+  .logo {
+    margin: 0 auto 24px;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: url('IMG-20250719-WA0001.jpg') center/contain no-repeat;
+    border: 5px solid #36b24a;
+    box-shadow: 0 10px 25px rgba(54,178,74,0.35);
+    transition: transform 0.3s ease;
+  }
+  .logo:hover {
+    transform: scale(1.08) rotate(5deg);
+  }
+
+  h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+    font-weight: 800;
+    color: #fff;
+    background-color: #36b24a;
+    display: inline-block;
+    padding: 18px 48px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(54,178,74,0.6);
+    user-select: none;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: 12px 0 36px;
+    color: #2a2a2a;
+  }
+
+  /* Countdown & Slots container */
+  .countdown-slots {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+
+  .countdown,
+  .slots {
+    background: #fff;
+    border-radius: 14px;
+    padding: 20px 36px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #d72638;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    user-select: none;
+    min-width: 180px;
+    text-align: center;
+    transition: transform 0.3s ease;
+  }
+  .slots {
+    color: #228f22;
+    cursor: default;
+    animation: pulseSlots 3s ease-in-out infinite;
+  }
+  @keyframes pulseSlots {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  /* CTA button */
+  .cta-button {
+    background: #36b24a;
+    color: white;
+    padding: 18px 54px;
+    font-weight: 900;
+    font-size: 1.35rem;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 10px 26px rgba(54,178,74,0.55);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-button:hover,
+  .cta-button:focus {
+    outline: none;
+    transform: translateY(-5px);
+    box-shadow: 0 14px 32px rgba(54,178,74,0.75);
+  }
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -70%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 60%, transparent 100%);
+    transform: skewX(-25deg);
+    transition: left 0.7s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+  .cta-button:hover::before {
+    left: 120%;
+  }
+
+  /* Features */
+  .features {
+    max-width: 740px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap: 28px;
+    margin-bottom: 60px;
+    padding: 0 10px;
+    z-index: 10;
+  }
+  .feature {
+    background: white;
+    border-radius: 14px;
+    padding: 28px 30px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    font-weight: 600;
+    color: #222;
+    list-style: none;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .feature:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 38px rgba(0,0,0,0.14);
+  }
+  .feature li {
+    position: relative;
+    padding-left: 26px;
+    margin-bottom: 16px;
+  }
+  .feature li::before {
+    content: '✔';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #36b24a;
+    font-weight: 700;
+  }
+  .proof-section {
+  width: 100%;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+
+.proof-screenshot {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+  /* Footer */
+  .footer {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 20px;
+    user-select: none;
+  }
+
+  /* Floating notification */
+  .floating-notification {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #36b24a;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 28px;
+    box-shadow: 0 8px 22px rgba(54,178,74,0.6);
+    font-weight: 700;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    pointer-events: none;
+    animation: fadeInOut 6s ease-in-out infinite;
+    z-index: 1000;
+  }
+  .floating-notification svg {
+    width: 22px;
+    height: 22px;
+    fill: white;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateY(20px);}
+    10%, 90% { opacity: 0.95; transform: translateY(0);}
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1);}
+    50% { transform: scale(1.3);}
+  }
+
+  /* Responsive tweaks */
+  @media (max-width: 520px) {
+    h1 {
+      font-size: 2rem;
+      padding: 12px 28px;
+    }
+    .countdown, .slots {
+      min-width: 140px;
+      font-size: 1.25rem;
+      padding: 14px 24px;
+    }
+    .cta-button {
+      font-size: 1.1rem;
+      padding: 16px 40px;
+    }
+    .features {
+      grid-template-columns: 1fr;
+    }
+    .proof-container {
+      height: 180px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- Particle background -->
+<div id="particles-js"></div>
+
+<!-- Hero Section -->
+<section class="hero" role="banner" aria-label="Trade With Toofan Channel Introduction">
+  <div class="logo" aria-hidden="true"></div>
+  <h1>TRADE WITH TOOFAN</h1>
+  <h2>Join the #1 Binary Trading Telegram Channel</h2>
+
+  <div class="countdown-slots" aria-live="polite" aria-atomic="true">
+    <div class="countdown" id="countdown">00 : 00 : 00 : 30</div>
+    <div class="slots" id="slots-left">⚠ Only 23 Free Slots Left – Act Fast!</div>
+  </div>
+
+  <a href="https://t.me/YOUR_TELEGRAM_LINK" target="_blank" rel="noopener noreferrer" aria-label="Join Trade With Toofan Telegram Channel">
+    <button class="cta-button">Join Free on Telegram 📲</button>
+  </a>
+</section>
+
+<!-- Features -->
+<section class="features" aria-label="Features of Trade With Toofan Channel">
+  <ul class="feature">
+    <li>95–99% Accurate Daily Signals</li>
+    <li>Real-Time Market Alerts & Tips</li>
+    <li>Expert Support & Clear Guidance</li>
+    <li>100% Free for Early Members</li>
+  </ul>
+</section>
+
+<section class="proof-section" aria-label="Live Proof Screenshot">
+    <img
+      src="IMG-20250719-WA0002.jpg"
+      alt="Live Proof Screenshot"
+      class="proof-screenshot"
+      loading="lazy"
+    />
+  </section>
+  
+  
+
+<!-- Floating Notification -->
+<div class="floating-notification" id="floating-notification" role="alert" aria-live="assertive" aria-atomic="true">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 3.87 4.78 8.64 6.26 10.2.4.43 1.08.43 1.48 0C14.22 17.64 19 12.87 19 9c0-3.87-3.13-7-7-7z"/></svg>
+  Just now <span id="joined-count">5</span> people joined!
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script>
+  // ParticleJS initialization
+  particlesJS('particles-js', {
+    particles: {
+      number: { value: 50, density: { enable: true, value_area: 900 } },
+      color: { value: "#36b24a" },
+      shape: { type: "circle" },
+      opacity: { value: 0.2, random: true },
+      size: { value: 3, random: true },
+      move: { enable: true, speed: 1, direction: "none", random: true, out_mode: "out" },
+      line_linked: { enable: true, distance: 120, color: "#36b24a", opacity: 0.15, width: 1 }
+    },
+    interactivity: {
+      detect_on: "canvas",
+      events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
+    },
+    retina_detect: true
+  });
+
+  // Countdown timer (30 seconds countdown loop)
+  const countdownEl = document.getElementById('countdown');
+  let countdownTime = 30;
+  function formatTime(t) {
+    const sec = t % 60;
+    const min = Math.floor((t % 3600) / 60);
+    const hour = Math.floor((t % 86400) / 3600);
+    const day = Math.floor(t / 86400);
+    return `${String(day).padStart(2,'0')} : ${String(hour).padStart(2,'0')} : ${String(min).padStart(2,'0')} : ${String(sec).padStart(2,'0')}`;
+  }
+  function updateCountdown(){
+    countdownEl.textContent = formatTime(countdownTime);
+    countdownTime--;
+    if(countdownTime < 0) countdownTime = 30;
+  }
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // Slots left update animation with random decrement and reset
+  const slotsEl = document.getElementById('slots-left');
+  let slotsLeft = 23;
+  function updateSlots(){
+    slotsLeft--;
+    if(slotsLeft < 10) slotsLeft = 23;
+    slotsEl.textContent = `⚠ Only ${slotsLeft} Free Slots Left – Act Fast!`;
+  }
+  setInterval(updateSlots, 4000);
+
+  // Floating notification "Just now X people joined" random updates
+  const joinedCountEl = document.getElementById('joined-count');
+  function randomJoinCount() {
+    return Math.floor(Math.random() * 7) + 3; // random between 3 to 9
+  }
+  function updateJoinedCount() {
+    const count = randomJoinCount();
+    joinedCountEl.textContent = count;
+  }
+  setInterval(updateJoinedCount, 6000);
+  updateJoinedCount();
+</script>
+</body>
+</html>
